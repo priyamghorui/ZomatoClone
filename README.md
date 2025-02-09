@@ -1,7 +1,39 @@
+# Zomato Clone
+## About this App
+### This is a well manage react-native app.
+### All foods and information fatch from API
+## App Preview
+
+![Screenshot_2025-02-09-16-03-32-87_a628f3341db8eea9fb82b5f7855db908-portrait](https://github.com/user-attachments/assets/24d889b0-a9d1-4e94-be56-290a1aec0b57)
+![Screenshot_2025-02-09-16-03-41-69_a628f3341db8eea9fb82b5f7855db908-portrait](https://github.com/user-attachments/assets/4aa85c96-9cbb-4872-a9c3-28728ff57b8e)
+
+![Screenshot_2025-02-09-16-04-02-71_a628f3341db8eea9fb82b5f7855db908-portrait](https://github.com/user-attachments/assets/2295c5d7-c77b-4564-8e02-0b5114956bea)
+![Screenshot_2025-02-09-16-11-23-86_a628f3341db8eea9fb82b5f7855db908-portrait](https://github.com/user-attachments/assets/3bf1423a-7a29-46d8-91b4-11df34a3f8b3)
+
+![Screenshot_2025-02-09-16-05-06-10_a628f3341db8eea9fb82b5f7855db908-portrait](https://github.com/user-attachments/assets/4d6ac8d3-507a-43f6-9995-9cb565b56353)
+![Screenshot_2025-02-09-16-05-09-85_a628f3341db8eea9fb82b5f7855db908-portrait](https://github.com/user-attachments/assets/3ce131fa-c2e1-4308-a096-3ca2b7960373)
+
+![Screenshot_2025-02-09-16-05-27-94_a628f3341db8eea9fb82b5f7855db908-portrait](https://github.com/user-attachments/assets/0181d6f6-890d-4a46-9218-eb0986d83ec1)
+![Screenshot_2025-02-09-16-05-34-36_a628f3341db8eea9fb82b5f7855db908-portrait](https://github.com/user-attachments/assets/51feee56-3c11-4f14-81c5-7818475dac26)
+
+![Screenshot_2025-02-09-16-05-43-78_a628f3341db8eea9fb82b5f7855db908-portrait](https://github.com/user-attachments/assets/d530c88b-b01a-4776-97a7-4cd323df2de0)
+![Screenshot_2025-02-09-16-04-12-48_a628f3341db8eea9fb82b5f7855db908-portrait](https://github.com/user-attachments/assets/de610e5d-39e1-43e8-8d40-9161cba16118)
+
+
+
+## Use imp Components and Library
+### 1. Food API
+### 2. Redux
+### 3. LottieFiles
+### 4. react-native-paper
+### 5. Bottom tab navigator
+### 6. Stack Navigater
+### 7. Animations
+### 8. react-native-vector-icons
+
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
-
-# Getting Started
-
+## Step 1: Start the Metro Server
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 
 ## Step 1: Start Metro
