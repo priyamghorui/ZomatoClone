@@ -9,6 +9,7 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useRef, useState} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
+  FlatList,
   Image,
   ImageBackground,
   SafeAreaView,
@@ -31,55 +32,14 @@ import CartEmptyCheckOut from './subCheckOut/CartEmptyCheckOut';
 
 function AllDetails(): React.JSX.Element {
   const navigate = useNavigation();
-  const [allItem, setallItem] = useState([]);
   const dispatch = useDispatch();
   const itemCartdata = useSelector(state => state.itemCartReducer);
 
   useEffect(() => {
-    setallItem(itemCartdata);
   }, [itemCartdata]);
-
-  return (
-    <View
-      style={{
-        justifyContent: 'space-between',
-        height: '100%',
-        backgroundColor: '#fff',
-      }}>
-      <View>
-        <View
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            paddingVertical: 10,
-            marginHorizontal: 15,
-            borderBottomColor: '#cbcbcb',
-            borderBottomWidth: 1,
-          }}>
-          <View style={{margin: 'auto'}}>
-            <Text
-              style={{
-                fontSize: 25,
-                fontWeight: 'bold',
-                //   textAlign: 'center',
-
-                // backgroundColor: '#fff',
-              }}>
-              Check Out
-            </Text>
-          </View>
-          <TouchableOpacity
-            onPress={() => {
-              navigate.goBack();
-            }}>
-            <Entypo size={30} name="cross" />
-          </TouchableOpacity>
-        </View>
-        {allItem.length != 0 ? (
-          allItem.map((data, key) => (
-            <View
-              key={key}
+  const CartMenuItem=({data})=>(
+      <View
+             
               style={{borderBottomColor: '#cbcbcb', borderBottomWidth: 1}}>
               <View
                 style={{
@@ -169,7 +129,55 @@ function AllDetails(): React.JSX.Element {
                 </View>
               </View>
             </View>
-          ))
+  )
+const renderItem=({item})=><CartMenuItem data={item}/>
+  return (
+    <View
+      style={{
+        justifyContent: 'space-between',
+        height: '100%',
+        backgroundColor: '#fff',
+      }}>
+      <View>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            paddingVertical: 10,
+            marginHorizontal: 15,
+            borderBottomColor: '#cbcbcb',
+            borderBottomWidth: 1,
+          }}>
+          <View style={{margin: 'auto'}}>
+            <Text
+              style={{
+                fontSize: 25,
+                fontWeight: 'bold',
+                //   textAlign: 'center',
+
+                // backgroundColor: '#fff',
+              }}>
+              Check Out
+            </Text>
+          </View>
+          <TouchableOpacity
+            onPress={() => {
+              navigate.goBack();
+            }}>
+            <Entypo size={30} name="cross" />
+          </TouchableOpacity>
+        </View>
+        {itemCartdata.length != 0 ? (
+          
+         <FlatList
+          data={itemCartdata}
+          renderItem={renderItem}
+          showsVerticalScrollIndicator={false}
+          
+          />
+          
+        
         ) : (
           <View>
             <CartEmptyCheckOut />
@@ -177,10 +185,10 @@ function AllDetails(): React.JSX.Element {
         )}
         <Text
           style={{
-            fontSize: 15,
+            fontSize: 20,
             fontWeight: 'bold',
             textAlign: 'center',
-
+            marginTop:10
             // backgroundColor: '#fff',
           }}>
           Billing Details
@@ -194,12 +202,15 @@ function AllDetails(): React.JSX.Element {
           paddingVertical: 20,
           backgroundColor: '#fff',
         }}>
+          <TouchableOpacity   onPress={() => {navigate.navigate("CheckOutDone")}}>
+
         <Button
           mode="contained"
-          style={{backgroundColor: 'red', borderRadius: 9}}
-          onPress={() => {}}>
+          style={{backgroundColor: 'red', borderRadius: 9,padding:5}}
+          >
           <Text style={{fontSize: 18}}>Payment</Text>
         </Button>
+          </TouchableOpacity>
       </View>
     </View>
   );

@@ -26,7 +26,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useDispatch} from 'react-redux';
 import {favouriteItems} from '../../../redux/action/action';
 
-function AllResturantsSub(): React.JSX.Element {
+function AllResturantsSub({name, details, rate, imgUri}): React.JSX.Element {
   const [favourite, setFavourite] = useState({name: 'hearto', color: 'white'});
   const dispatch = useDispatch();
   return (
@@ -36,12 +36,15 @@ function AllResturantsSub(): React.JSX.Element {
         marginVertical: 20,
         borderRadius: 10,
         borderColor: 'white',
-        backgroundColor: '#e5e5e5',
         paddingBottom: 10,
+        shadowColor: '#000',
+  backgroundColor: '#fff',
+  elevation: 9,         // required on Android
       }}>
       <Card.Cover
         style={{opacity: 0.7, backgroundColor: 'black'}}
-        source={require('../../../assets/the-decor-of-aaheli-the.jpg')}
+        // source={require('../../../assets/the-decor-of-aaheli-the.jpg')}
+        source={{uri: imgUri}}
       />
       <View
         style={{
@@ -61,10 +64,16 @@ function AllResturantsSub(): React.JSX.Element {
           }}>
           <TouchableOpacity
             onPress={() => {
-              favourite.name == 'hearto'
-                ? setFavourite({name: 'heart', color: 'red'})
-                : setFavourite({name: 'hearto', color: 'white'});
-              dispatch(favouriteItems({count: 1}));
+              if (favourite.name == 'hearto') {
+                setFavourite({name: 'heart', color: 'red'});
+                dispatch(favouriteItems({count: 1}));
+                console.log("hello");
+                
+              } else {
+                console.log("hello11");
+                setFavourite({name: 'hearto', color: 'white'});
+                dispatch(favouriteItems({count: -1}));
+              }
             }}
             style={{}}>
             <AntDesign
@@ -89,7 +98,7 @@ function AllResturantsSub(): React.JSX.Element {
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}>
-          <Text style={{fontSize: 25}}>Pushpa Resturants</Text>
+          <Text style={{fontSize: 22, fontWeight: '500'}}>{name}</Text>
           <View style={{display: 'flex', justifyContent: 'flex-end'}}>
             <View
               style={{
@@ -105,12 +114,12 @@ function AllResturantsSub(): React.JSX.Element {
                   display: 'flex',
                   alignContent: 'center',
                 }}>
-                4.3 <AntDesign name="star" size={15} color={'white'} />
+                {rate} <AntDesign name="star" size={15} color={'white'} />
               </Text>
             </View>
           </View>
         </View>
-        <Text style={{fontSize: 15}}>Details</Text>
+        <Text style={{fontSize: 15}}>{details}</Text>
       </View>
     </View>
   );

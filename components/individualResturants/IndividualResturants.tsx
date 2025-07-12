@@ -22,6 +22,7 @@ import {
   Button,
   useWindowDimensions,
   Dimensions,
+  FlatList,
 } from 'react-native';
 
 import {Card, Surface} from 'react-native-paper';
@@ -74,48 +75,59 @@ function IndividualResturants(): React.JSX.Element {
       }).start();
     }
   }, [itemCartCount]);
+  function Menu({item}) {
+    return (
+      <View style={{borderBottomColor: '#A59D84', borderBottomWidth: 0.5}}>
+        <Menus item={item} />
+      </View>
+    );
+  }
+  const renderTopItems = () => (
+    <>
+      <Details />
+      <FilterMenu />
+    </>
+  );
+  const renderItem = ({item}) => <Menu item={item} />;
   return (
     <View style={{backgroundColor: '#fff'}}>
       <Header />
 
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <Details />
-        {/* <Text
+      {/* <Text
           onPress={() => {
             console.log(itemCartCount);
           }}>
           helo
         </Text> */}
 
-        <FilterMenu />
-        {/* <Text
+      {/* <Text
           onPress={() => {
             // getMeal();
           }}>
           helo
         </Text> */}
-        {isloding == true ? (
-          <View
-            style={{height: Dimensions.get('screen').height, paddingTop: 150}}>
-            <LottieView
-              style={{height: 100}}
-              source={require('../../assets/animation/Animation1.json')}
-              autoPlay
-              // speed={1}
-            />
-          </View>
-        ) : (
-          <View style={{marginBottom: 40}}>
-            {mealData.map((item, key) => (
-              <View
-                key={key}
-                style={{borderBottomColor: '#A59D84', borderBottomWidth: 0.5}}>
-                <Menus item={item} />
-              </View>
-            ))}
-          </View>
-        )}
-      </ScrollView>
+      {isloding == true ? (
+        <View
+          style={{height: Dimensions.get('screen').height, paddingTop: 150}}>
+          <LottieView
+            style={{height: 100}}
+            source={require('../../assets/animation/Animation1.json')}
+            autoPlay
+            // speed={1}
+          />
+        </View>
+      ) : (
+        <View style={{marginBottom: 80}}>
+          <FlatList
+            data={mealData}
+            renderItem={renderItem}
+            keyExtractor={item => item.meals[0].idMeal}
+            initialNumToRender={2}
+            ListHeaderComponent={renderTopItems}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
+      )}
       <Animated.View
         style={{
           transform: [{translateY}],

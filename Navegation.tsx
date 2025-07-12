@@ -27,7 +27,7 @@ import {
 import {Button, Flex} from '@ant-design/react-native';
 import Home from './screen/Home';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import {DefaultTheme, NavigationContainer, useNavigation} from '@react-navigation/native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -37,6 +37,7 @@ import Cart from './screen/Cart';
 import CheckOut from './screen/CheckOut';
 import Favourite from './screen/Favourite';
 import IndividualResturantsScreen from './screen/IndividualResturantsScreen';
+import { CheckOutDone } from './screen/CheckOutDone';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -71,7 +72,7 @@ function TabBarNavegation() {
           tabBarIcon: ({color, size}) => {
             return <MaterialIcons name="favorite" size={30} color={color} />;
           },
-          tabBarBadge: favouriteItemCount.length,
+          tabBarBadge: favouriteItemCount,
           tabBarBadgeStyle: {backgroundColor: '#607D8B'},
         }}
         name="Favourite"
@@ -92,9 +93,17 @@ function TabBarNavegation() {
   );
 }
 function Navegation(): React.JSX.Element {
+  
   return (
+    
     <Provider store={store}>
-      <NavigationContainer>
+      <NavigationContainer theme={{
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: '#fff'
+  },
+}}>
         <Stack.Navigator
           screenOptions={{
             headerShown: false,
@@ -105,6 +114,7 @@ function Navegation(): React.JSX.Element {
             component={IndividualResturantsScreen}
           />
           <Stack.Screen name="CheckOut" component={CheckOut} />
+          <Stack.Screen name="CheckOutDone" component={CheckOutDone} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

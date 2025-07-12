@@ -42,23 +42,8 @@ function Home(): React.JSX.Element {
   const [searchQuery, setSearchQuery] = React.useState('');
 
   return (
-    <SafeAreaView style={{backgroundColor:"#fff"}}>
-      <ScrollView showsVerticalScrollIndicator={false} stickyHeaderIndices={[4]}>
-
-      <SearchPanel />
-      <Offers />
-      <HomeMenu />
-     
-
-      <SpotLightResturounts />
-     
-      <FilterResturants/>
-    
-
-      <AllResturants/>
-    
-      
-      </ScrollView>
+    <SafeAreaView>
+      <AllResturants />
     </SafeAreaView>
   );
 }
